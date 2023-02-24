@@ -11,6 +11,10 @@ spec:
       impl: {{.Release.Name}}-metricsapi
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/r1-productcatalog/metrics"
+        prometheus.io/port: "4000"
       labels:
         app: {{.Release.Name}}-{{.Values.component.name}}
         impl: {{.Release.Name}}-metricsapi

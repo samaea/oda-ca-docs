@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{.Release.Name}}-partyroleapi-ingress
+spec:
+  ingressClassName: azure-application-gateway
+  rules:
+  - http:
+      paths:
+      - path: /r1-productcatalog/tmf-api/partyRoleManagement/v4
+        pathType: Prefix
+        backend:
+          service:
+            name: {{.Release.Name}}-partyroleapi
+            port:
+              number: 8080
